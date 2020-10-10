@@ -28,6 +28,20 @@ const getBambooJoint = () => {
     return joint;
 };
 
+const randomInt = (min, max) => Math.floor(Math.random() * (max + 1 - min)) + min;
+
+const getBambooShoot = (min, max) => {
+    const bamboo = document.createElement('div');
+    bamboo.className = 'bamboo';
+
+    const size = randomInt(min, max);
+    for (let i = 0; i < size; i++) {
+        bamboo.appendChild(getBambooJoint());
+    }
+
+    return bamboo;
+};
+
 const spawnScreenBamboo = () => {
     // Spawn an initial single joint
     const screen = document.getElementById('screen');
@@ -48,28 +62,14 @@ const spawnScreenBamboo = () => {
     }
 
     // Do left offshoot
-    const leftExtra = Math.min(Math.random() * 3, extraJoints + 1);
-    if (leftExtra) {
-        const leftBamboo = document.createElement('div');
-        leftBamboo.className = 'bamboo left';
-        screen.appendChild(leftBamboo);
-
-        for (let i = 0; i < leftExtra; i++) {
-            leftBamboo.appendChild(getBambooJoint());
-        }
-    }
+    const leftShoot = getBambooShoot(0, Math.min(3, extraJoints + 1));
+    leftShoot.className += ' left';
+    screen.appendChild(leftShoot);
 
     // Do right offshoot
-    const rightExtra = Math.min(Math.random() * 3, extraJoints + 1);
-    if (rightExtra) {
-        const rightBamboo = document.createElement('div');
-        rightBamboo.className = 'bamboo right';
-        screen.appendChild(rightBamboo);
-
-        for (let i = 0; i < rightExtra; i++) {
-            rightBamboo.appendChild(getBambooJoint());
-        }
-    }
+    const rightShoot = getBambooShoot(0, Math.min(3, extraJoints + 1));
+    rightShoot.className += ' right';
+    screen.appendChild(rightShoot);
 };
 
 const setTitle = (str) => {
@@ -93,6 +93,77 @@ const setSocials = (data) => {
     }
 };
 
+const addBambooJoint = (shoot) => {
+    const joint = getBambooJoint();
+    joint.style.opacity = '0';
+    joint.style.filter = 'brightness(5)';
+    joint.style.transition = 'filter 1s linear, opacity .25s linear';
+    shoot.insertBefore(joint, shoot.firstElementChild);
+    setTimeout(() => {
+        joint.style.filter = '';
+        joint.style.opacity = '';
+        setTimeout(() => {
+            joint.style.transition = '';
+        }, 1000);
+    }, 100);
+};
+
+const setShootRotation = (shoot) => {
+    const hasTilt = Math.random() < 0.5;
+    const leftTilt = Math.random() < 0.5;
+    shoot.style.transform = hasTilt ? `rotate(${leftTilt ? '-' : ''}${randomInt(0, 4)}deg` : '';
+};
+
+const resetBambooShoot = (shoot) => {
+    shoot.style.transition = 'filter .25s linear, opacity 1s linear';
+    setTimeout(() => {
+        shoot.style.opacity = '0';
+        shoot.style.filter = 'brightness(5)';
+        setTimeout(() => {
+            shoot.style.transition = '';
+            shoot.style.filter = '';
+            shoot.style.opacity = '';
+            shoot.innerHTML = '';
+            setShootRotation(shoot);
+        }, 1000);
+    }, 100);
+};
+
+const spawnPandaBamboo = () => {
+    // Create the initial shoots
+    const shootsDiv = document.getElementById('shoots');
+    const shoots = [
+        getBambooShoot(1, 2),
+        getBambooShoot(0, 2),
+        getBambooShoot(0, 1),
+        getBambooShoot(1, 2),
+        getBambooShoot(0, 1),
+    ];
+    for (const shoot of shoots) {
+        setShootRotation(shoot);
+        shootsDiv.appendChild(shoot);
+    }
+
+    // Random growth/destruction
+    setInterval(() => {
+        const shoot = shoots[randomInt(0, shoots.length - 1)];
+
+        // TODO: Used weighted random to prefer shortest shoot to grow
+        const doGrowth = Math.random() < 0.3;
+        if (doGrowth) {
+            addBambooJoint(shoot);
+            return;
+        }
+
+        // TODO: Used weighted random to prefer tallest shoot to destroy
+        const doDestroy = Math.random() < 0.1;
+        if (doDestroy) {
+            resetBambooShoot(shoot);
+            return;
+        }
+    }, 5 * 1000);
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     setScreenSize(80);
@@ -102,4 +173,5 @@ document.addEventListener('DOMContentLoaded', () => {
         ['twitter.com/MattIPv4', 'fab fa-twitter'],
         ['github.com/MattIPv4', 'fab fa-github']
     ]);
+    spawnPandaBamboo();
 });
