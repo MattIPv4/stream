@@ -3,7 +3,9 @@ const { getBambooJoint, getBambooShoot } = require('./bamboo');
 const setScreenSize = module.exports.setScreenSize = (height) => {
     const screen = document.getElementById('screen');
     screen.style.height = `${height}vh`;
+    screen.style.minHeight = `${height}vh`;
     screen.style.width = `${height * (16/9)}vh`;
+    screen.style.minWidth = `${height * (16/9)}vh`;
 };
 
 const spawnScreenBamboo = module.exports.spawnScreenBamboo = () => {

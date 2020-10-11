@@ -4,7 +4,7 @@ $green-dark: #509D56;
 $green-light: #60BC67;
 $light-dark: #F5F7FA;
 $key-fill: #0f0;
-$sprite-size: 128px;
+$sprite-size: 96px;
 $cloud-height: 8vh;
 
 $bamboo-segment: $green-light;
@@ -44,20 +44,21 @@ main {
 .bg-fill {
   background: $dark-light;
   flex-grow: 1;
+  overflow: hidden;
 }
 
 #title {
-  font-size: 9vh;
+  font-size: 8vh;
   font-family: 'Nunito', sans-serif;
   font-weight: 600;
   line-height: 1;
-  margin: 2vh 2vh 0;
+  margin: 1vh 2vh 0;
 }
 
 #socials {
   display: flex;
   flex-direction: row;
-  margin: 2vh 2vh 0;
+  margin: 1vh 2vh 0;
 
   > div {
     display: flex;
@@ -66,13 +67,13 @@ main {
     margin: 0 4vh 0 0;
 
     > i {
-      font-size: 4vh;
+      font-size: 3vh;
       margin: 0 1vh 0 0;
       color: $social-icon;
     }
 
     > span {
-      font-size: 3vh;
+      font-size: 2.5vh;
       font-family: 'Nunito', sans-serif;
     }
   }
@@ -101,7 +102,7 @@ main {
   }
 
   #subtitle {
-    font-size: 7vh;
+    font-size: 6.5vh;
     font-family: 'Nunito', sans-serif;
     font-weight: 600;
     line-height: 1;

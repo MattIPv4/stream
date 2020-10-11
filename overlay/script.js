@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const parsed = queryString.parse(window.location.search);
     console.log(parsed);
 
-    setScreenSize(80);
+    setScreenSize(parsed.screenSize || 85);
     spawnScreenBamboo();
 
     setTitle(parsed.title || 'Set with ?title');
