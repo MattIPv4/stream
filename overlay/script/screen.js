@@ -43,6 +43,11 @@ const setTitle = module.exports.setTitle = (str) => {
     title.textContent = str;
 };
 
+const setTitleSize = module.exports.setTitleSize = (size) => {
+    const title = document.getElementById('title');
+    title.style.fontSize = `${size}vh`;
+};
+
 const setSocials = module.exports.setSocials = (data) => {
     const socials = document.getElementById('socials');
     socials.innerHTML = '';
@@ -59,9 +64,19 @@ const setSocials = module.exports.setSocials = (data) => {
     }
 };
 
+const setSocialsSize = module.exports.setSocialsSize = (size) => {
+    const socials = document.getElementById('socials');
+    socials.style.fontSize = `${size}vh`;
+};
+
 const setSubtitle = module.exports.setSubtitle = (str) => {
     const subtitle = document.getElementById('subtitle');
     subtitle.textContent = str;
+};
+
+const setSubtitleSize = module.exports.setSubtitleSize = (size) => {
+    const subtitle = document.getElementById('subtitle');
+    subtitle.style.fontSize = `${size}vh`;
 };
 
 const setTextHeight = module.exports.setTextHeight = (height) => {

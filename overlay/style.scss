@@ -59,21 +59,23 @@ main {
   display: flex;
   flex-direction: row;
   margin: 1vh 2vh 0;
+  font-size: 3vh;
 
   > div {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 0 4vh 0 0;
+    font-size: inherit;
 
     > i {
-      font-size: 3vh;
+      font-size: 1em;
       margin: 0 1vh 0 0;
       color: $social-icon;
     }
 
     > span {
-      font-size: 2.5vh;
+      font-size: .8em;
       font-family: 'Nunito', sans-serif;
     }
   }
@@ -102,7 +104,7 @@ main {
   }
 
   #subtitle {
-    font-size: 6.5vh;
+    font-size: 6vh;
     font-family: 'Nunito', sans-serif;
     font-weight: 600;
     line-height: 1;
