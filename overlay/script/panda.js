@@ -10,15 +10,13 @@ const shoots = [
 ];
 const pixelsPerSecond = 20;
 
-const walkToShoot = (shoot) => new Promise((resolve) => {
+const walkToPosition = (newLeft) => new Promise((resolve) => {
     const panda = document.getElementById('panda');
 
-    const shootLeft = shoot.getBoundingClientRect().left;
     const pandaLeft = panda.getBoundingClientRect().left;
-    const pandaWidth = panda.getBoundingClientRect().width;
     const parentLeft = panda.parentElement.getBoundingClientRect().left;
     const oldLeft = pandaLeft - parentLeft;
-    const newLeft = shootLeft - parentLeft - (pandaWidth / 2);
+
     const distance = Math.abs(oldLeft - newLeft);
     const time = distance / pixelsPerSecond;
 
@@ -35,6 +33,17 @@ const walkToShoot = (shoot) => new Promise((resolve) => {
         });
 });
 
+const walkToShoot = (shoot) => {
+    const panda = document.getElementById('panda');
+
+    const shootLeft = shoot.getBoundingClientRect().left;
+    const pandaWidth = panda.getBoundingClientRect().width;
+    const parentLeft = panda.parentElement.getBoundingClientRect().left;
+
+    const newLeft = shootLeft - parentLeft - (pandaWidth / 2);
+    return walkToPosition(newLeft);
+};
+
 const doPandaEat = () => new Promise((resolve) => {
     // TODO: Used weighted random to prefer tallest shoot to destroy
     const shoot = shoots[randomInt(0, shoots.length - 1)];
@@ -49,9 +58,16 @@ const doPandaEat = () => new Promise((resolve) => {
 });
 
 const doPandaWalk = () => new Promise((resolve) => {
-    const shoot = shoots[randomInt(0, shoots.length - 1)];
+    // Walk anywhere in shoot container
+    const shoots = document.getElementById('shoots');
     const panda = document.getElementById('panda');
-    walkToShoot(shoot).then(() => {
+    const shootsLeft = shoots.getBoundingClientRect().left;
+    const shootsWidth = shoots.getBoundingClientRect().width;
+    const pandaWidth = panda.getBoundingClientRect().width;
+    const parentLeft = panda.parentElement.getBoundingClientRect().left;
+
+    const newLeft = randomInt(shootsLeft + pandaWidth, shootsLeft + shootsWidth - pandaWidth) - parentLeft;
+    walkToPosition(newLeft).then(() => {
         panda.className = 'sitting';
         resolve();
     });
@@ -60,17 +76,17 @@ const doPandaWalk = () => new Promise((resolve) => {
 const doPandaAction = () => {
     const rand = Math.random();
 
-    // Walk
+    // Walk (0 - 0.5: 50%)
     if (rand < 0.5) {
         return doPandaWalk();
     }
 
-    // Eat
+    // Eat (0.5 - 0.6: 10%)
     if (rand < 0.6) {
         return doPandaEat();
     }
 
-    // Nothing
+    // Nothing (0.6 - 1: 40%)
     const panda = document.getElementById('panda');
     panda.className = 'sitting';
     return Promise.resolve();
@@ -79,7 +95,7 @@ const doPandaAction = () => {
 const doBambooGrowth = () => {
     const rand = Math.random();
 
-    // Growth
+    // Growth (0 - 0.3: 30%)
     if (rand < 0.3) {
         // TODO: Used weighted random to prefer shortest shoot to grow
         // TODO: Only consider shoots that aren't being destroyed
@@ -87,7 +103,7 @@ const doBambooGrowth = () => {
         return addBambooJoint(shoot);
     }
 
-    // Nothing
+    // Nothing (0.3 - 1: 70%)
     return Promise.resolve();
 }
 
