@@ -5,6 +5,7 @@ $green-light: #60BC67;
 $light-dark: #F5F7FA;
 $key-fill: #0f0;
 $sprite-size: 128px;
+$cloud-height: 8vh;
 
 $bamboo-segment: $green-light;
 $bamboo-joint: $green-dark;
@@ -79,8 +80,25 @@ main {
 
 #text {
   font-size: 3vh;
-  margin: 3vh 3vh 1vh;
-  overflow: hidden;
+  margin: 3vh 3vh $cloud-height;
+  padding: 0 0 2vh;
+  position: relative;
+
+  &:after {
+    content: '';
+    background: url('cloud.png') repeat-x;
+    background-size: auto 100%;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    display: block;
+    height: $cloud-height;
+    position: absolute;
+    bottom: -$cloud-height;
+    left: -3vh;
+    right: -3vh;
+    filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.25));
+  }
 
   #subtitle {
     font-size: 7vh;
@@ -129,7 +147,6 @@ main {
   margin: 0 3vh 0;
   justify-content: space-evenly;
   align-items: flex-end;
-  overflow: hidden;
 }
 
 .bamboo {
