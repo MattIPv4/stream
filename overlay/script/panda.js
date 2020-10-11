@@ -9,6 +9,7 @@ const shoots = [
     getBambooShoot(0, 2),
 ];
 const pixelsPerSecond = 20;
+let pandaHunger = 0;
 
 const walkToPosition = (newLeft) => new Promise((resolve) => {
     const panda = document.getElementById('panda');
@@ -73,19 +74,26 @@ const doPandaWalk = () => new Promise((resolve) => {
 });
 
 const doPandaAction = () => {
+    pandaHunger++;
     const rand = Math.random();
 
-    // Walk (0 - 0.5: 50%)
-    if (rand < 0.5) {
-        return doPandaWalk();
-    }
-
-    // Eat (0.5 - 0.6: 10%)
-    if (rand < 0.6) {
+    // Eat (5% + 0.75% per hunger)
+    const eat = 0.05 + (pandaHunger * 0.0075);
+    console.log('hunger:', pandaHunger, 'eat:', eat);
+    if (rand < eat) {
+        console.log('eat');
+        pandaHunger = 0;
         return doPandaEat();
     }
 
-    // Nothing (0.6 - 1: 40%)
+    // Walk (50%)
+    if (rand < eat + 0.5) {
+        console.log('walk');
+        return doPandaWalk();
+    }
+
+    // Nothing
+    console.log('sit');
     const panda = document.getElementById('panda');
     panda.className = 'sitting';
     return Promise.resolve();
