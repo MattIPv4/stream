@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "overlay:dev": "parcel overlay/index.html",
-    "overlay:build": "parcel build overlay/index.html"
+    "overlay:build": "parcel build overlay/index.html -d dist/overlay"
   },
   "repository": {
     "type": "git",
