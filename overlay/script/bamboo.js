@@ -80,9 +80,25 @@ const resetBambooShoot = module.exports.resetBambooShoot = (shoot) => new Promis
 const getBambooSize = module.exports.getBambooSize = (shoot) => shoot.getElementsByClassName('joint').length;
 
 const getRandomBamboo = module.exports.getRandomBamboo = (shoots, shortest = false) => {
-    const weighted = shoots.map((shoot, index) => ({
-        weight: getBambooSize(shoot),
+    // Weight heavily based on shoot size
+    let weighted = shoots.map((shoot, index) => ({
+        weight: getBambooSize(shoot) * (Math.random() + 1),
         id: index,
     }));
-    return shoots[rwc(weighted, shortest ? 100 : 50)];
+
+    // Invert the weights for shortest preference
+    if (shortest) {
+        const max = weighted.reduce((prev, cur) => cur.weight > prev ? cur.weight : prev, 0);
+        weighted = weighted.map(data => {
+            data.weight = max - data.weight;
+            return data;
+        });
+    }
+
+    // Get random, fallback to complete random
+    let index = rwc(weighted);
+    if (index === null) index = randomInt(0, shoots.length - 1);
+
+    // Return
+    return shoots[index];
 };
