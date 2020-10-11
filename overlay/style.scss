@@ -274,7 +274,7 @@ main {
     animation: 1.2s walking infinite steps(1);
 
     &.left {
-      transform: scaleX(-100%);
+      animation: 1.2s walking-left infinite steps(1);
     }
   }
 }
@@ -300,5 +300,20 @@ main {
   }
   75% {
     background-position: -200% -300%;
+  }
+}
+
+@keyframes walking-left {
+  0% {
+    background-position: 0 -500%;
+  }
+  25% {
+    background-position: -100% -500%;
+  }
+  50% {
+    background-position: 0 -500%;
+  }
+  75% {
+    background-position: -200% -500%;
   }
 }
