@@ -77,6 +77,27 @@ main {
   }
 }
 
+#text {
+  font-size: 3vh;
+  margin: 3vh 3vh 1vh;
+  overflow: hidden;
+
+  #subtitle {
+    font-size: 7vh;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    line-height: 1;
+    margin: 0 0 1vh;
+  }
+
+  p {
+    font-size: inherit;
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.15;
+    margin: 0 0 1vh;
+  }
+}
+
 #screen {
   position: relative;
 
@@ -103,7 +124,9 @@ main {
 
 #shoots {
   display: flex;
-  margin: auto 3vh 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin: 0 3vh 0;
   justify-content: space-evenly;
   align-items: flex-end;
   overflow: hidden;

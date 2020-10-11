@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/MattIPv4/stream#readme",
   "dependencies": {
+    "query-string": "^6.13.5",
     "random-weighted-choice": "^0.1.4"
   },
   "devDependencies": {

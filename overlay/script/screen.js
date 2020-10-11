@@ -56,3 +56,35 @@ const setSocials = module.exports.setSocials = (data) => {
         socials.appendChild(social);
     }
 };
+
+const setSubtitle = module.exports.setSubtitle = (str) => {
+    const subtitle = document.getElementById('subtitle');
+    subtitle.textContent = str;
+};
+
+const setTextHeight = module.exports.setTextHeight = (height) => {
+    const text = document.getElementById('text');
+    text.style.height = `${height}vh`;
+};
+
+const setTextSize = module.exports.setTextSize = (size) => {
+    const text = document.getElementById('text');
+    text.style.fontSize = `${size}vh`;
+};
+
+const setText = module.exports.setText = (strs) => {
+    const text = document.getElementById('text');
+
+    // Remove old
+    const oldTexts = text.getElementsByTagName('p');
+    for (const oldText of oldTexts) {
+        text.removeChild(oldText);
+    }
+
+    // Add new
+    for (const str of strs) {
+        const newText = document.createElement('p');
+        newText.textContent = str;
+        text.appendChild(newText);
+    }
+};

@@ -1,14 +1,24 @@
-const { setScreenSize, spawnScreenBamboo, setTitle, setSocials } = require('./script/screen');
+const queryString = require('query-string');
+const { setScreenSize, spawnScreenBamboo, setTitle, setSocials, setSubtitle, setTextSize, setTextHeight, setText } = require('./script/screen');
 const { spawnPandaBamboo } = require('./script/panda');
 
 document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
+    const parsed = queryString.parse(window.location.search);
+    console.log(parsed);
+
     setScreenSize(80);
     spawnScreenBamboo();
-    setTitle(urlParams.get('title') || 'Set with ?title');
+
+    setTitle(parsed.title || 'Set with ?title');
     setSocials([
         ['twitter.com/MattIPv4', 'fab fa-twitter'],
         ['github.com/MattIPv4', 'fab fa-github']
     ]);
+
+    setSubtitle(parsed.subtitle || 'Set with ?subtitle');
+    setTextHeight(parsed.textHeight || 'auto');
+    setTextSize(parsed.textSize || 3);
+    setText(Array.isArray(parsed.text) ? parsed.text : [parsed.text || 'Set with ?text']);
+
     spawnPandaBamboo();
 });
