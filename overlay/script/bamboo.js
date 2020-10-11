@@ -1,3 +1,4 @@
+const rwc = require('random-weighted-choice');
 const { randomInt, immediateDOM, promiseDelay } = require('./utils');
 
 const getBambooJoint = module.exports.getBambooJoint = () => {
@@ -75,3 +76,13 @@ const resetBambooShoot = module.exports.resetBambooShoot = (shoot) => new Promis
             addBambooJoint(shoot).then(resolve);
         });
 });
+
+const getBambooSize = module.exports.getBambooSize = (shoot) => shoot.getElementsByClassName('joint').length;
+
+const getRandomBamboo = module.exports.getRandomBamboo = (shoots, shortest = false) => {
+    const weighted = shoots.map((shoot, index) => ({
+        weight: getBambooSize(shoot),
+        id: index,
+    }));
+    return shoots[rwc(weighted, shortest ? 100 : 50)];
+};

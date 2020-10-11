@@ -1,5 +1,5 @@
 const { randomInt, promiseLoop, immediateDOM, promiseDelay } = require('./utils');
-const { getBambooShoot, setShootRotation, addBambooJoint, resetBambooShoot } = require('./bamboo');
+const { getBambooShoot, setShootRotation, addBambooJoint, resetBambooShoot, getRandomBamboo } = require('./bamboo');
 
 const shoots = [
     getBambooShoot(1, 3),
@@ -45,8 +45,7 @@ const walkToShoot = (shoot) => {
 };
 
 const doPandaEat = () => new Promise((resolve) => {
-    // TODO: Used weighted random to prefer tallest shoot to destroy
-    const shoot = shoots[randomInt(0, shoots.length - 1)];
+    const shoot = getRandomBamboo(shoots);
     const panda = document.getElementById('panda');
     walkToShoot(shoot).then(() => {
         panda.className = 'eating';
@@ -97,9 +96,8 @@ const doBambooGrowth = () => {
 
     // Growth (0 - 0.3: 30%)
     if (rand < 0.3) {
-        // TODO: Used weighted random to prefer shortest shoot to grow
         // TODO: Only consider shoots that aren't being destroyed
-        const shoot = shoots[randomInt(0, shoots.length - 1)];
+        const shoot = getRandomBamboo(shoots, true);
         return addBambooJoint(shoot);
     }
 

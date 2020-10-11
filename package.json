@@ -17,7 +17,9 @@
     "url": "https://github.com/MattIPv4/stream/issues"
   },
   "homepage": "https://github.com/MattIPv4/stream#readme",
-  "dependencies": {},
+  "dependencies": {
+    "random-weighted-choice": "^0.1.4"
+  },
   "devDependencies": {
     "parcel-bundler": "^1.12.4",
     "sass": "^1.27.0"
