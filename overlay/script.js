@@ -1,29 +1,60 @@
 const queryString = require('query-string');
-const { setScreenSize, spawnScreenBamboo, setTitle, setTitleSize, setSocials, setSocialsSize, setSubtitle, setSubtitleSize, setTextSize, setTextHeight, setText } = require('./script/screen');
+const { setScreenSize, spawnScreenBamboo, } = require('./script/screen');
+const { setTitle, setTitleSize, setSocials, setSocialsSize, setSubtitle, setSubtitleSize, setTextSize, setTextHeight, setText } = require('./script/text');
 const { spawnPandaBamboo } = require('./script/panda');
+
+const selectType = (type) => {
+    const template = document.getElementById(`overlay-${type}`);
+    template.parentElement.appendChild(document.importNode(template.content, true));
+    template.parentElement.classList.add(`overlay-${type}`);
+
+    const templates = document.getElementsByTagName('template');
+    for (const elm of templates) {
+        elm.parentElement.removeChild(elm);
+    }
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     const parsed = queryString.parse(window.location.search);
     console.log(parsed);
 
-    setScreenSize(parsed.screenSize || 85);
-    spawnScreenBamboo();
+    // Select the template type
+    const type = parsed.type || 'main';
+    selectType(type);
 
+    // Title for both
     setTitle(parsed.title || 'Set with ?title');
     setTitleSize(parsed.subtitleSize || 8);
 
+    // Socials for both
     setSocials([
         ['twitter.com/MattIPv4', 'fab fa-twitter'],
         ['github.com/MattIPv4', 'fab fa-github']
     ]);
     setSocialsSize(parsed.socialsSize || 3);
 
-    setSubtitle(parsed.subtitle || 'Set with ?subtitle');
-    setSubtitleSize(parsed.subtitleSize || 6);
+    // Title overlay only
+    if (type === 'title') {
+        // Cute panda
+        spawnPandaBamboo(10);
+    }
 
-    setTextHeight(parsed.textHeight || 'auto');
-    setTextSize(parsed.textSize || 3);
-    setText(Array.isArray(parsed.text) ? parsed.text : [parsed.text || 'Set with ?text']);
+    // Main overlay only
+    if (type === 'main') {
+        // Screen
+        setScreenSize(parsed.screenSize || 85);
+        spawnScreenBamboo();
 
-    spawnPandaBamboo();
+        // Subtitle
+        setSubtitle(parsed.subtitle || 'Set with ?subtitle');
+        setSubtitleSize(parsed.subtitleSize || 6);
+
+        // Text
+        setTextHeight(parsed.textHeight || 'auto');
+        setTextSize(parsed.textSize || 3);
+        setText(Array.isArray(parsed.text) ? parsed.text : [parsed.text || 'Set with ?text']);
+
+        // Cute panda
+        spawnPandaBamboo(5);
+    }
 });

@@ -1,13 +1,7 @@
 const { randomInt, promiseLoop, immediateDOM, promiseDelay } = require('./utils');
 const { getBambooShoot, setShootRotation, addBambooJoint, resetBambooShoot, getRandomBamboo } = require('./bamboo');
 
-const shoots = [
-    getBambooShoot(1, 3),
-    getBambooShoot(0, 4),
-    getBambooShoot(0, 2),
-    getBambooShoot(1, 3),
-    getBambooShoot(0, 2),
-];
+const shoots = [];
 const pixelsPerSecond = 20;
 let pandaHunger = 0;
 
@@ -113,15 +107,17 @@ const doBambooGrowth = () => {
     return Promise.resolve();
 }
 
-const spawnPandaBamboo = module.exports.spawnPandaBamboo = () => {
+const spawnPandaBamboo = module.exports.spawnPandaBamboo = (shootCount) => {
     // Create the initial shoots
     const shootsDiv = document.getElementById('shoots');
-    for (const shoot of shoots) {
+    for (let i = 0; i < shootCount; i++) {
+        const shoot = getBambooShoot(1, 3);
+        shoots.push(shoot);
         setShootRotation(shoot);
         shootsDiv.appendChild(shoot);
     }
 
     // Looping actions
-    promiseLoop(doBambooGrowth, () => 5000);
-    promiseLoop(doPandaAction, () => randomInt(3000, 7000));
+    promiseLoop(doBambooGrowth, () => shootCount * 1000);
+    promiseLoop(doPandaAction, () => randomInt((shootCount * 3/5) * 1000, (shootCount * 7/5) * 1000));
 };

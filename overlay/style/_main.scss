@@ -1,0 +1,84 @@
+main.overlay-main {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background: $key-fill;
+
+  &,
+  section {
+    display: flex;
+    height: 100%;
+  }
+
+  section {
+    position: relative;
+    flex-direction: column;
+  }
+
+  .bg-fill {
+    background: $dark-light;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+
+  #text {
+    font-size: 3vh;
+    margin: 3vh 3vh $cloud-height;
+    padding: 0 0 2vh;
+    position: relative;
+
+    &:after {
+      content: '';
+      background: url('cloud.png') repeat-x;
+      background-size: auto 100%;
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+      display: block;
+      height: $cloud-height;
+      position: absolute;
+      bottom: -$cloud-height;
+      left: -3vh;
+      right: -3vh;
+      filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.25));
+    }
+
+    #subtitle {
+      font-size: 6vh;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      line-height: 1;
+      margin: 0 0 1vh;
+    }
+
+    p {
+      font-size: inherit;
+      font-family: 'Nunito', sans-serif;
+      line-height: 1.15;
+      margin: 0 0 1vh;
+    }
+  }
+
+  #screen {
+    position: relative;
+
+    .bamboo {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      transform: translateX(50%);
+      z-index: 3;
+
+      &.left {
+        z-index: 2;
+        filter: brightness(85%);
+        transform: rotate(-5deg) translateX(50%) translateX(-5px);
+      }
+
+      &.right {
+        z-index: 1;
+        filter: brightness(70%);
+        transform: rotate(5deg) translateX(50%) translateX(5px);
+      }
+    }
+  }
+}
