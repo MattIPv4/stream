@@ -29,6 +29,11 @@ const setSocialsSize = module.exports.setSocialsSize = (size) => {
     socials.style.fontSize = `${size}vh`;
 };
 
+const setSocialsOffset = module.exports.setSocialsOffset = (size) => {
+    const socials = document.getElementById('socials');
+    socials.style.marginBottom = `${size}vh`;
+};
+
 const setSubtitle = module.exports.setSubtitle = (str) => {
     const subtitle = document.getElementById('subtitle');
     subtitle.textContent = str;

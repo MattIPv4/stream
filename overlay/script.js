@@ -1,6 +1,6 @@
 const queryString = require('query-string');
 const { setScreenSize, spawnScreenBamboo, } = require('./script/screen');
-const { setTitle, setTitleSize, setSocials, setSocialsSize, setSubtitle, setSubtitleSize, setTextSize, setTextHeight, setText } = require('./script/text');
+const { setTitle, setTitleSize, setSocials, setSocialsSize, setSocialsOffset, setSubtitle, setSubtitleSize, setTextSize, setTextHeight, setText } = require('./script/text');
 const { spawnPandaBamboo } = require('./script/panda');
 
 const selectType = (type) => {
@@ -35,6 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Title overlay only
     if (type === 'title') {
+        // Socials bottom offset
+        setSocialsOffset(parsed.socialsOffset || 18);
+
         // Cute panda
         spawnPandaBamboo(10);
     }
