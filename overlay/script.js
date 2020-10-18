@@ -14,6 +14,14 @@ const selectType = (type) => {
     }
 };
 
+const setTransparent = (set) => {
+    if (set) {
+        document.documentElement.classList.add('transparent');
+    } else {
+        document.documentElement.classList.remove('transparent');
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const parsed = queryString.parse(window.location.search);
     console.log(parsed);
@@ -21,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Select the template type
     const type = parsed.type || 'main';
     selectType(type);
+
+    // Transparent overlay
+    setTransparent((parsed.transparent || false) === 'true');
 
     // Title for both
     setTitle(parsed.title || 'Set with ?title');

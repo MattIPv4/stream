@@ -1,0 +1,12 @@
+html.transparent {
+  &,
+  body {
+    background: transparent !important;
+  }
+
+  body {
+    main.overlay-main {
+      background: transparent !important;
+    }
+  }
+}
