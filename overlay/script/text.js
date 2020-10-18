@@ -36,7 +36,16 @@ const setSocialsOffset = module.exports.setSocialsOffset = (size) => {
 
 const setSubtitle = module.exports.setSubtitle = (str) => {
     const subtitle = document.getElementById('subtitle');
+
+    // If no subtitle, hide
+    if (!str || !str.trim().length) {
+        subtitle.style.display = 'none';
+        return;
+    }
+
+    // Set and show subtitle
     subtitle.textContent = str;
+    subtitle.style.display = undefined;
 };
 
 const setSubtitleSize = module.exports.setSubtitleSize = (size) => {

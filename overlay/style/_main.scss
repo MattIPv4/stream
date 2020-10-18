@@ -20,6 +20,10 @@ main.overlay-main {
     overflow: hidden;
   }
 
+  #title {
+    margin: 1vh 2vh 0;
+  }
+
   #text {
     font-size: 3vh;
     margin: 3vh 3vh $cloud-height;
@@ -43,10 +47,6 @@ main.overlay-main {
     }
 
     #subtitle {
-      font-size: 6vh;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 600;
-      line-height: 1;
       margin: 0 0 1vh;
     }
 

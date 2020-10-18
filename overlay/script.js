@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setTitle(parsed.title || 'Set with ?title');
     setTitleSize(parsed.titleSize || 8);
 
+    // Subtitle for both
+    setSubtitle(parsed.subtitle || 'Set with ?subtitle');
+    setSubtitleSize(parsed.subtitleSize || 6);
+
     // Socials for both
     setSocials([
         ['twitter.com/MattIPv4', 'fab fa-twitter'],
@@ -58,10 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Screen
         setScreenSize(parsed.screenSize || 85);
         spawnScreenBamboo();
-
-        // Subtitle
-        setSubtitle(parsed.subtitle || 'Set with ?subtitle');
-        setSubtitleSize(parsed.subtitleSize || 6);
 
         // Text
         setTextHeight(parsed.textHeight || 'auto');
