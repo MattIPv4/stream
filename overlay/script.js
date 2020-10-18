@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Title for both
     setTitle(parsed.title || 'Set with ?title');
-    setTitleSize(parsed.subtitleSize || 8);
+    setTitleSize(parsed.titleSize || 8);
 
     // Socials for both
     setSocials([
