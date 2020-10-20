@@ -23,6 +23,8 @@ const setTransparent = (set) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    document.body.addEventListener('click', () => document.body.requestFullscreen());
+
     const parsed = queryString.parse(window.location.search);
     console.log(parsed);
 
