@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/MattIPv4/stream#readme",
   "dependencies": {
-    "pet-panda": "^2.0.1-dev.1",
+    "pet-panda": "^2.0.1-dev.2",
     "query-string": "^6.13.5",
     "random-weighted-choice": "^0.1.4"
   },

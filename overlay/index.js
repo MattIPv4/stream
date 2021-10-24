@@ -2,7 +2,7 @@ require('./style.scss');
 
 const queryString = require('query-string');
 const Panda = require('pet-panda');
-const { setScreenSize/*, spawnScreenBamboo*/ } = require('./script/screen');
+const { setScreenSize, spawnScreenBamboo } = require('./script/screen');
 const { setTitle, setTitleSize, setSocials, setSocialsSize, setSocialsOffset, setSubtitle, setSubtitleSize, setTextSize, setTextHeight, setText } = require('./script/text');
 // const { spawnPandaBamboo } = require('./script/panda');
 
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (type === 'main') {
         // Screen
         setScreenSize(parsed.screenSize || 85);
-        // spawnScreenBamboo();
+        spawnScreenBamboo().then();
 
         // Text
         setTextHeight(parsed.textHeight || 'auto');
