@@ -15,7 +15,7 @@ main.overlay-main {
   }
 
   .bg-fill {
-    background: $dark-light;
+    background: $dark;
     flex-grow: 1;
     overflow: hidden;
   }
@@ -32,7 +32,7 @@ main.overlay-main {
 
     &:after {
       content: '';
-      background: url('cloud.png') repeat-x;
+      background: url('../cloud.png') repeat-x;
       background-size: auto 100%;
       image-rendering: pixelated;
       image-rendering: -moz-crisp-edges;
@@ -82,7 +82,7 @@ main.overlay-main {
     }
   }
 
-  #shoots {
+  #panda {
     flex-grow: 1;
     flex-shrink: 1;
     margin: 0 3vh 0;

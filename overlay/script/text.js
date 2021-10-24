@@ -1,14 +1,14 @@
-const setTitle = module.exports.setTitle = (str) => {
+module.exports.setTitle = str => {
     const title = document.getElementById('title');
     title.textContent = str;
 };
 
-const setTitleSize = module.exports.setTitleSize = (size) => {
+module.exports.setTitleSize = size => {
     const title = document.getElementById('title');
     title.style.fontSize = `${size}vh`;
 };
 
-const setSocials = module.exports.setSocials = (data) => {
+module.exports.setSocials = data => {
     const socials = document.getElementById('socials');
     socials.innerHTML = '';
 
@@ -24,17 +24,17 @@ const setSocials = module.exports.setSocials = (data) => {
     }
 };
 
-const setSocialsSize = module.exports.setSocialsSize = (size) => {
+module.exports.setSocialsSize = size => {
     const socials = document.getElementById('socials');
     socials.style.fontSize = `${size}vh`;
 };
 
-const setSocialsOffset = module.exports.setSocialsOffset = (size) => {
+module.exports.setSocialsOffset = size => {
     const socials = document.getElementById('socials');
     socials.style.marginBottom = `${size}vh`;
 };
 
-const setSubtitle = module.exports.setSubtitle = (str) => {
+module.exports.setSubtitle = str => {
     const subtitle = document.getElementById('subtitle');
 
     // If no subtitle, hide
@@ -48,22 +48,22 @@ const setSubtitle = module.exports.setSubtitle = (str) => {
     subtitle.style.display = undefined;
 };
 
-const setSubtitleSize = module.exports.setSubtitleSize = (size) => {
+module.exports.setSubtitleSize = size => {
     const subtitle = document.getElementById('subtitle');
     subtitle.style.fontSize = `${size}vh`;
 };
 
-const setTextHeight = module.exports.setTextHeight = (height) => {
+module.exports.setTextHeight = height => {
     const text = document.getElementById('text');
     text.style.height = `${height}vh`;
 };
 
-const setTextSize = module.exports.setTextSize = (size) => {
+module.exports.setTextSize = size => {
     const text = document.getElementById('text');
     text.style.fontSize = `${size}vh`;
 };
 
-const setText = module.exports.setText = (strs) => {
+module.exports.setText = strings => {
     const text = document.getElementById('text');
 
     // Remove old
@@ -73,7 +73,7 @@ const setText = module.exports.setText = (strs) => {
     }
 
     // Add new
-    for (const str of strs) {
+    for (const str of strings) {
         const newText = document.createElement('p');
         newText.textContent = str;
         text.appendChild(newText);

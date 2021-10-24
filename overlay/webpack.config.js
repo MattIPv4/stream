@@ -23,7 +23,7 @@ module.exports = env => ({
             // Our scss styling needs to loaded
             {
                 test: /\.scss$/i,
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ],
+                use: [ 'style-loader', 'css-loader', 'resolve-url-loader', 'sass-loader' ],
             },
             // Our images need to be loaded
             {

@@ -1,6 +1,6 @@
 const { Bamboo } = require('pet-panda');
 
-const setScreenSize = module.exports.setScreenSize = (height) => {
+module.exports.setScreenSize = height => {
     const screen = document.getElementById('screen');
     screen.style.height = `${height}vh`;
     screen.style.minHeight = `${height}vh`;
@@ -8,7 +8,7 @@ const setScreenSize = module.exports.setScreenSize = (height) => {
     screen.style.minWidth = `${height * (16/9)}vh`;
 };
 
-const spawnScreenBamboo = module.exports.spawnScreenBamboo = async () => {
+module.exports.spawnScreenBamboo = async () => {
     // Get the screen and target height
     const screen = document.getElementById('screen');
     const screenHeight = screen.getBoundingClientRect().height

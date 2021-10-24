@@ -2,9 +2,24 @@ require('./style.scss');
 
 const queryString = require('query-string');
 const Panda = require('pet-panda');
-const { setScreenSize, spawnScreenBamboo } = require('./script/screen');
-const { setTitle, setTitleSize, setSocials, setSocialsSize, setSocialsOffset, setSubtitle, setSubtitleSize, setTextSize, setTextHeight, setText } = require('./script/text');
-// const { spawnPandaBamboo } = require('./script/panda');
+
+const {
+    setScreenSize,
+    spawnScreenBamboo,
+} = require('./script/screen');
+
+const {
+    setTitle,
+    setTitleSize,
+    setSocials,
+    setSocialsSize,
+    setSocialsOffset,
+    setSubtitle,
+    setSubtitleSize,
+    setTextSize,
+    setTextHeight,
+    setText,
+} = require('./script/text');
 
 const selectType = (type) => {
     const template = document.getElementById(`overlay-${type}`);
@@ -60,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Cute panda
         new Panda(document.getElementById('panda'), { shootCount: 10 });
-        // spawnPandaBamboo(10);
     }
 
     // Main overlay only
@@ -76,6 +90,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Cute panda
         new Panda(document.getElementById('panda'), { shootCount: 5 });
-        // spawnPandaBamboo(5);
     }
 });

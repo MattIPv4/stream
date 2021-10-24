@@ -1,17 +1,10 @@
-$dark-dark: #212529;
-$dark-light: #383f45;
+$dark: #383f45;
+$light: #F5F7FA;
 $green-dark: #509D56;
 $green-light: #60BC67;
-$light-dark: #F5F7FA;
 $key-fill: #0f0;
 $sprite-size: 96px;
 $cloud-height: 8vh;
-
-$bamboo-segment: $green-light;
-$bamboo-joint: $green-dark;
-$bamboo-leaf: $green-dark;
-$bamboo-leaf-light: $green-light;
-$social-icon: $green-light;
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/minireset.css/0.0.2/minireset.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap');
@@ -19,8 +12,8 @@ $social-icon: $green-light;
 
 html,
 body {
-  background: $dark-light;
-  color: $light-dark;
+  background: $dark;
+  color: $light;
   height: 100vh;
   overflow: hidden;
 }
@@ -55,7 +48,7 @@ body {
     > i {
       font-size: 1em;
       margin: 0 1vh 0 0;
-      color: $social-icon;
+      color: $green-light;
     }
 
     > span {
@@ -69,4 +62,8 @@ body {
   height: 100%;
   overflow: hidden;
   position: relative;
+
+  > div {
+    overflow: initial;
+  }
 }
