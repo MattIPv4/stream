@@ -1,14 +1,17 @@
-$dark: #383f45;
-$light: #F5F7FA;
-$green-dark: #509D56;
-$green-light: #60BC67;
+$dark: #081C15;
+$light: #F5FAF7;
+$green-dark: #2D6A4F;
+$green-light: #95D5B2;
 $key-fill: #0f0;
 $sprite-size: 96px;
 $cloud-height: 8vh;
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/minireset.css/0.0.2/minireset.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
+
+$font: 'VT323', monospace;
+$bold-weight: 400; // 600
 
 html,
 body {
@@ -20,15 +23,15 @@ body {
 
 #title {
   font-size: 8vh;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 600;
+  font-family: $font;
+  font-weight: $bold-weight;
   line-height: 1;
 }
 
 #subtitle {
   font-size: 6vh;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 600;
+  font-family: $font;
+  font-weight: $bold-weight;
   line-height: 1;
 }
 
@@ -53,7 +56,7 @@ body {
 
     > span {
       font-size: .8em;
-      font-family: 'Nunito', sans-serif;
+      font-family: $font;
     }
   }
 }
