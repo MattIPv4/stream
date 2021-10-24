@@ -1,7 +1,9 @@
+require('./style.scss');
+
 const queryString = require('query-string');
-const { setScreenSize, spawnScreenBamboo, } = require('./script/screen');
+const { setScreenSize/*, spawnScreenBamboo*/ } = require('./script/screen');
 const { setTitle, setTitleSize, setSocials, setSocialsSize, setSocialsOffset, setSubtitle, setSubtitleSize, setTextSize, setTextHeight, setText } = require('./script/text');
-const { spawnPandaBamboo } = require('./script/panda');
+// const { spawnPandaBamboo } = require('./script/panda');
 
 const selectType = (type) => {
     const template = document.getElementById(`overlay-${type}`);
@@ -56,14 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
         setSocialsOffset(parsed.socialsOffset || 18);
 
         // Cute panda
-        spawnPandaBamboo(10);
+        // spawnPandaBamboo(10);
     }
 
     // Main overlay only
     if (type === 'main') {
         // Screen
         setScreenSize(parsed.screenSize || 85);
-        spawnScreenBamboo();
+        // spawnScreenBamboo();
 
         // Text
         setTextHeight(parsed.textHeight || 'auto');
@@ -71,6 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setText(Array.isArray(parsed.text) ? parsed.text : [parsed.text || 'Set with ?text']);
 
         // Cute panda
-        spawnPandaBamboo(5);
+        // spawnPandaBamboo(5);
     }
 });
