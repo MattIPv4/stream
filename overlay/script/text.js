@@ -12,14 +12,14 @@ module.exports.setSocials = data => {
     const socials = document.getElementById('socials');
     socials.innerHTML = '';
 
-    for (const socialData of data) {
+    for (const [ text, icon ] of data) {
         const social = document.createElement('div');
-        const icon = document.createElement('i');
-        icon.className = socialData[1];
-        const text = document.createElement('span');
-        text.textContent = socialData[0];
-        social.appendChild(icon);
-        social.appendChild(text);
+        const iconWrap = document.createElement('i');
+        iconWrap.innerHTML = icon;
+        const textWrap = document.createElement('span');
+        textWrap.textContent = text;
+        social.appendChild(iconWrap);
+        social.appendChild(textWrap);
         socials.appendChild(social);
     }
 };

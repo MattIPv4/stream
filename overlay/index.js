@@ -63,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Socials for both
     setSocials([
-        ['twitter.com/MattIPv4', 'fab fa-twitter'],
-        ['github.com/MattIPv4', 'fab fa-github']
+        ['twitter.com/MattIPv4', require('pixelarticons/svg/message-text.svg')],
+        ['github.com/MattIPv4', require('pixelarticons/svg/script-text.svg')]
     ]);
     setSocialsSize(parsed.socialsSize || 3);
 
@@ -89,6 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setText(Array.isArray(parsed.text) ? parsed.text : [parsed.text || 'Set with ?text']);
 
         // Cute panda
-        new Panda(document.getElementById('panda'), { shootCount: 5 });
+        new Panda(document.getElementById('panda'), { shootCount: 3 });
     }
 });

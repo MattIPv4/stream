@@ -8,7 +8,6 @@ $cloud-height: 8vh;
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/minireset.css/0.0.2/minireset.min.css');
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
 
 $font: 'VT323', monospace;
 $bold-weight: 400; // 600
@@ -49,9 +48,12 @@ body {
     font-size: inherit;
 
     > i {
-      font-size: 1em;
       margin: 0 1vh 0 0;
-      color: $green-light;
+
+      > svg {
+        color: $green-light;
+        width: 1em;
+      }
     }
 
     > span {
