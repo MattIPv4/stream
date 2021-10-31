@@ -15,7 +15,7 @@ main.overlay-main {
   }
 
   .bg-fill {
-    background: $dark-light;
+    background: $dark;
     flex-grow: 1;
     overflow: hidden;
   }
@@ -32,7 +32,7 @@ main.overlay-main {
 
     &:after {
       content: '';
-      background: url('cloud.png') repeat-x;
+      background: url('../cloud.png') repeat-x;
       background-size: auto 100%;
       image-rendering: pixelated;
       image-rendering: -moz-crisp-edges;
@@ -52,7 +52,7 @@ main.overlay-main {
 
     p {
       font-size: inherit;
-      font-family: 'Nunito', sans-serif;
+      font-family: $font;
       line-height: 1.15;
       margin: 0 0 1vh;
     }
@@ -61,7 +61,65 @@ main.overlay-main {
   #screen {
     position: relative;
 
-    .bamboo {
+    $pixel: 0.5em;
+
+    .glitch {
+      position: absolute;
+      filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.25));
+
+      &::before,
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: $pixel;
+        height: $pixel;
+      }
+
+      &:nth-of-type(1) {
+        width: $pixel * 5;
+        height: $pixel;
+        background: $green-light;
+        left: $pixel * 2;
+        top: $pixel * -0.5;
+
+        &::before {
+          background: $light;
+          right: $pixel * -1;
+          bottom: $pixel * -1;
+        }
+
+        &::after {
+          background: $green-dark;
+          right: $pixel * -2;
+          bottom: 0;
+        }
+      }
+
+      &:nth-of-type(2) {
+        width: $pixel;
+        height: $pixel;
+        background: $light;
+        left: $pixel * 9;
+        top: $pixel * -1.5;
+
+        &::before {
+          width: $pixel * 3;
+          background: $green-dark;
+          right: $pixel * -3;
+          bottom: $pixel * -1;
+        }
+
+        &::after {
+          width: $pixel * 2;
+          background: $green-light;
+          right: $pixel * -5;
+          bottom: $pixel * -2;
+        }
+      }
+    }
+
+    .pet-panda-bamboo {
       position: absolute;
       bottom: 0;
       right: 0;
@@ -82,9 +140,9 @@ main.overlay-main {
     }
   }
 
-  #shoots {
+  #panda {
     flex-grow: 1;
     flex-shrink: 1;
-    margin: 0 3vh 0;
+    margin: 0 2vh;
   }
 }

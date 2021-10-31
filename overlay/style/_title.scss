@@ -10,7 +10,7 @@ main.overlay-title {
   &:before,
   &:after {
     content: '';
-    background: url('cloud.png') repeat-x;
+    background: url('../cloud.png') repeat-x;
     background-size: auto 100%;
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
@@ -23,7 +23,7 @@ main.overlay-title {
 
   &:before {
     top: -$cloud-height + 1vh;
-    height: $cloud-height / 2;
+    height: $cloud-height * 0.5;
     filter: brightness(80%) drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.25));
   }
 
@@ -58,7 +58,7 @@ main.overlay-title {
     }
   }
 
-  #shoots {
+  #panda {
     position: absolute;
     width: 100%;
     height: 100%;

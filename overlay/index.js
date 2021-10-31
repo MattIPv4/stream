@@ -1,7 +1,25 @@
+require('./style.scss');
+
 const queryString = require('query-string');
-const { setScreenSize, spawnScreenBamboo, } = require('./script/screen');
-const { setTitle, setTitleSize, setSocials, setSocialsSize, setSocialsOffset, setSubtitle, setSubtitleSize, setTextSize, setTextHeight, setText } = require('./script/text');
-const { spawnPandaBamboo } = require('./script/panda');
+const Panda = require('pet-panda');
+
+const {
+    setScreenSize,
+    spawnScreenBamboo,
+} = require('./script/screen');
+
+const {
+    setTitle,
+    setTitleSize,
+    setSocials,
+    setSocialsSize,
+    setSocialsOffset,
+    setSubtitle,
+    setSubtitleSize,
+    setTextSize,
+    setTextHeight,
+    setText,
+} = require('./script/text');
 
 const selectType = (type) => {
     const template = document.getElementById(`overlay-${type}`);
@@ -45,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Socials for both
     setSocials([
-        ['twitter.com/MattIPv4', 'fab fa-twitter'],
-        ['github.com/MattIPv4', 'fab fa-github']
+        ['twitter.com/MattIPv4', require('pixelarticons/svg/message-text.svg')],
+        ['github.com/MattIPv4', require('pixelarticons/svg/script-text.svg')]
     ]);
     setSocialsSize(parsed.socialsSize || 3);
 
@@ -56,14 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
         setSocialsOffset(parsed.socialsOffset || 18);
 
         // Cute panda
-        spawnPandaBamboo(10);
+        new Panda(document.getElementById('panda'), { shootCount: 10 });
     }
 
     // Main overlay only
     if (type === 'main') {
         // Screen
         setScreenSize(parsed.screenSize || 85);
-        spawnScreenBamboo();
+        spawnScreenBamboo().then();
 
         // Text
         setTextHeight(parsed.textHeight || 'auto');
@@ -71,6 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setText(Array.isArray(parsed.text) ? parsed.text : [parsed.text || 'Set with ?text']);
 
         // Cute panda
-        spawnPandaBamboo(5);
+        new Panda(document.getElementById('panda'), { shootCount: 3 });
     }
 });
