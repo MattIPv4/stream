@@ -4,20 +4,31 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   build-deploy:
-
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
-      - name: Node.js
-        uses: actions/setup-node@v1
+      - name: Set Node.js version from .nvmrc
+        id: set-node
+        run: echo "::set-output name=node::$(cat .nvmrc)"
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: 14.1.8.1
+          node-version: ${{ steps.set-node.outputs.node }}
+
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
 
       - name: Install dependencies
         run: npm ci
@@ -25,11 +36,13 @@ jobs:
       - name: Build overlay
         run: npm run overlay:build
 
-      - name: Deploy to Pages
-        uses: JamesIves/github-pages-deploy-action@2.0.0
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          CNAME: stream.mattcowley.co.uk
-          BASE_BRANCH: master
-          BRANCH: gh-pages
-          FOLDER: dist
+      - name: Add CNAME
+        run: echo "stream.mattcowley.co.uk" > dist/CNAME
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.1
+        with:
+          branch: gh-pages
+          folder: dist
+          clean: true
+          single-commit: true
