@@ -33,11 +33,19 @@ module.exports = env => ({
             // Our images need to be loaded
             {
                 test: /\.png$/i,
-                type: 'asset/resource'
+                type: 'asset/resource',
             },
             {
                 test: /\.svg$/i,
-                type: 'asset/source'
+                type: 'asset/source',
+            },
+            // Run all JS through Babel for obs-browser compat
+            {
+                test: /\.m?js$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: { presets: [ [ '@babel/preset-env', { targets: { chrome: '75' } } ] ] },
+                },
             },
         ],
     },
